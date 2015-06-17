@@ -9,6 +9,8 @@
 import java.util.HashSet;
 import java.util.Set;
 import javax.ws.rs.*;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Application;
 
 /**
@@ -28,4 +30,11 @@ public class RESTApplication extends Application{
    public Set<Object> getSingletons() {
       return singletons;
    }    
+   
+//   public static void iniciaSessao(String username){
+//    String strUri="http://localhost:8080/TrabalhoFinalSD/resources/chat/iniciaSessao/";
+//    Client client = ClientBuilder.newClient();
+//    String str= client.target(strUri).queryParam("username").request().accept("text/plain").get(String.class);
+//    client.close();
+//    } 
 }

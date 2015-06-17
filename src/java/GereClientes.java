@@ -19,16 +19,23 @@ import javax.ws.rs.core.Response;
  * @author Tiago
  */
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import static javax.ws.rs.client.Entity.form;
 @Path("/chat")
 
 public class GereClientes {
     private ArrayList<Clientes> Clientes = new ArrayList<Clientes>();//criação e inicialização de um array para os clientes
+    String strUri="http://localhost:8080/TrabalhoFinalSD/resources/chat/iniciaSessao/";
 
     public GereClientes() {
         Clientes.add(new Clientes("Teste"));
     }
+    
+    
     @GET
-    @Path("/{username}")
+    @Path("/iniciaSessao/{username}")
     @Produces(MediaType.TEXT_PLAIN)
     public Response iniciaSessao(@PathParam("username") String username){
      
@@ -38,7 +45,9 @@ public class GereClientes {
             }
         }
         Clientes.add(new Clientes(username));
+        Response response = client.target(strUri + "/login").request().accept("application/xml").post(Entity.form(form));
         return Response.ok("Sessão iniciada com sucesso").build();
+
 
     }
     
